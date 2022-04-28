@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
 useState
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState('')
   const [propietario, setPropietario] = useState('')
   const [email, setEmail] = useState('')
@@ -12,13 +12,33 @@ const Formulario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Validar formulario
+    //Validar formulario: que nadie esté vacio
     if ( [ nombre, propietario, email, fecha, sintomas ].includes('') ){
       setError(true)
       return;
     }
 
+    //No hay error
     setError(false)
+
+    //guardo los datos del paciente actual en un Objeto
+    const objetoPaciente = {
+      nombre, 
+      propietario, 
+      email, 
+      fecha, 
+      sintomas
+    }
+
+    //Agregar Nuevo Objeto de Paciente en mi arreglo de pacientes
+    setPacientes([...pacientes, objetoPaciente])
+
+    //Limpiar formulario
+    setNombre('')
+    setPropietario('')
+    setEmail('')
+    setFecha('')
+    setSintomas('')
     
   }
 
