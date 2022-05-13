@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import Paciente from "./Paciente";
 
 const ListadoPacientes = ({ pacientes, setPaciente }) => {
+
+	useEffect(() => {
+		if (pacientes.length > 0){
+			console.log('Se agregó un Nuevo paciente');
+		}
+	}, [pacientes]);
+
 	return (
 		<div className="md:w-1/2 lg:w-3/5">
 			{pacientes && pacientes.length ? (
@@ -10,7 +18,7 @@ const ListadoPacientes = ({ pacientes, setPaciente }) => {
 						Administra tus {""}
 						<span className="text-indigo-600 font-bold">Pacientes y Citas</span>
 					</p>
-					<div className="md:h-screen overflow-scroll">
+						<div className="md:h-screen overflow-scroll">
 						{pacientes.map((paciente) => (
 							<Paciente
 								key={paciente.id}
