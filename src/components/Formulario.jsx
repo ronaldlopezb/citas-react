@@ -61,8 +61,6 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
       setPacientes([...pacientes, objetoPaciente]);
     }
 
-    
-
     //Limpiar formulario
     setNombre("");
     setPropietario("");
