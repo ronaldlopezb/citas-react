@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({ pacientes, setPacientes, paciente }) => {
+const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 	const [nombre, setNombre] = useState("");
 	const [propietario, setPropietario] = useState("");
 	const [email, setEmail] = useState("");
@@ -54,6 +54,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
       objetoPaciente.id = paciente.id
       const pacientesActualizados = pacientes.map( pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState)
       setPacientes(pacientesActualizados)
+      setPaciente({}) //esto borra el paciente temporal
     }else{
       //Nuevo registro
       //Agregar Nuevo Objeto de Paciente en mi arreglo de pacientes
@@ -61,9 +62,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
       setPacientes([...pacientes, objetoPaciente]);
     }
 
-    
-
-    //Limpiar formulario
+    //Reiniciar el formulario
     setNombre("");
     setPropietario("");
     setEmail("");
